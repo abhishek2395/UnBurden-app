@@ -1,0 +1,153 @@
+.cosmic-toggle {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+.toggle {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(26, 26, 46, 0.5), rgba(22, 33, 62, 0.5));
+  border-radius: 15px;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.3),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.cosmos {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(1px 1px at 10% 10%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 20% 20%, #fff 100%, transparent),
+    radial-gradient(2px 2px at 30% 30%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 40% 40%, #fff 100%, transparent),
+    radial-gradient(2px 2px at 50% 50%, #fff 100%, transparent),
+    radial-gradient(1px 1px at 60% 60%, #fff 100%, transparent);
+  background-size: 200% 200%;
+  opacity: 0.1;
+  transition: 0.5s;
+}
+
+.toggle-orb {
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 2px;
+  bottom: 2px;
+  background: linear-gradient(145deg, #4f46e5, #6366f1);
+  border-radius: 50%;
+  transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.inner-orb {
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #6366f1, #4f46e5);
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.ring {
+  position: absolute;
+  inset: -2px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.toggle:checked + .slider {
+  background: linear-gradient(45deg, rgba(22, 33, 62, 0.8), rgba(26, 26, 46, 0.8));
+}
+
+.toggle:checked + .slider .toggle-orb {
+  transform: translateX(30px) rotate(360deg);
+  background: linear-gradient(145deg, #6366f1, #4f46e5);
+}
+
+.toggle:checked + .slider .inner-orb {
+  background: linear-gradient(145deg, #4f46e5, #6366f1);
+  transform: scale(0.9);
+}
+
+.toggle:checked + .slider .ring {
+  border-color: rgba(99, 102, 241, 0.3);
+  animation: ringPulse 2s infinite;
+}
+
+.energy-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 102, 241, 0.5),
+    transparent
+  );
+  transform-origin: left;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.energy-line:nth-child(1) { top: 20%; transform: rotate(15deg); }
+.energy-line:nth-child(2) { top: 50%; transform: rotate(0deg); }
+.energy-line:nth-child(3) { top: 80%; transform: rotate(-15deg); }
+
+.toggle:checked + .slider .energy-line {
+  opacity: 1;
+  animation: energyFlow 2s linear infinite;
+}
+
+.particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #6366f1;
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.toggle:checked + .slider .particle {
+  animation: particleBurst 1s ease-out infinite;
+}
+
+@keyframes ringPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes energyFlow {
+  0% { transform: scaleX(0) translateX(0); opacity: 0; }
+  50% { transform: scaleX(1) translateX(50%); opacity: 1; }
+  100% { transform: scaleX(0) translateX(100%); opacity: 0; }
+}
+
+@keyframes particleBurst {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(var(--x, 20px), var(--y, 20px)) scale(0); opacity: 0; }
+}
