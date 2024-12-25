@@ -1,0 +1,44 @@
+/* Base styles */
+.nav-glass {
+  background: rgba(12, 12, 14, 0.7);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Animations */
+@keyframes nav-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Navigation item animations */
+.nav-item {
+  animation: fade-in 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.nav-item.visible {
+  opacity: 1;
+}
+
+/* Mobile menu animations */
+.mobile-menu-enter {
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.mobile-menu-exit {
+  animation: slide-in 0.3s ease-out reverse forwards;
+}
