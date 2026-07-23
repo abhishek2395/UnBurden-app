@@ -5,7 +5,7 @@
   "description": "Student loan payoff calculator — model extra EMIs, annual step-ups, and lump sums against a standard amortization schedule.",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite",
