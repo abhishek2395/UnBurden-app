@@ -60,8 +60,9 @@ The app is genuinely functional — the calculator is not a mockup.
 
 ## 6. 🔴 Security — fix before anything else
 
-- **A live RapidAPI key is committed in `.env` and public on GitHub:** `VITE_RAPID_API_KEY=63663c5f...af6`. `.env` is **not** in `.gitignore`. Anyone can use it on your account.
-  - **Action:** revoke/rotate that key on RapidAPI now, add `.env` to `.gitignore`, and purge it from git history (or, simplest: since the API is unused, delete the whole RapidAPI integration and the `.env`).
+- **A live RapidAPI key was committed in `.env` and public on GitHub.** `.env` was not in `.gitignore`.
+  - ✅ **Done (Phase 0):** `.env` deleted, added to `.gitignore`, the unused RapidAPI integration removed, and the key purged from all git history via `filter-branch` (verified: zero matches across every git object).
+  - ⚠️ **Still required from you:** rotate/revoke the key in the RapidAPI dashboard. History rewriting does **not** un-leak a key that was already public — assume it is compromised until rotated.
 - `VITE_`-prefixed env vars are bundled into client JS by design — treat them as public forever.
 
 ## 7. Dead code to remove (safe deletions)
@@ -79,7 +80,7 @@ That's ~1/3 of the files. Removing them shrinks the mental model a lot.
 
 ## 9. Suggested revival roadmap (prioritized)
 
-**Phase 0 — Hygiene (hours):** rotate the API key, gitignore `.env`, delete dead code, bump Node 22, move to Vercel, real README.
+**Phase 0 — Hygiene — ✅ COMPLETE.** Key purged from history (rotation still pending on your side), `.env` gitignored, 19 dead files removed, Node 22, Vite 5→8 (17 vulnerabilities → 0), `vercel.json` added, real README. Verified: typecheck/lint/build clean, calculator output unchanged, no console errors.
 
 **Phase 1 — Make the copy true (days):** either build the promised features or fix the promises. Concretely: real currency support, plan **export/share** (PDF + shareable URL via encoded state), input validation, localStorage persistence, auto-scroll to results, and mount the theme toggle (or delete it).
 
