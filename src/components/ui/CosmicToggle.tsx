@@ -37,7 +37,7 @@ export const CosmicToggle: React.FC<CosmicToggleProps> = ({
           <div className="energy-line" />
           <div className="particles">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="particle" style={{ '--angle': `${i * 60}deg` } as any} />
+              <div key={i} className="particle" style={{ '--angle': `${i * 60}deg` } as React.CSSProperties} />
             ))}
           </div>
         </div>

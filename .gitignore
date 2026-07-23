@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Environment variables — never commit these.
+# NOTE: Vite inlines any VITE_* var into the client bundle, so it is public.
+# Real secrets belong in a serverless function, not here.
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

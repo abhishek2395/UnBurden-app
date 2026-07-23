@@ -1,4 +1,4 @@
-import { LoanInputs, EMIScheduleEntry, LoanSummary } from '../types/calculator';
+import { LoanInputs, EMIScheduleEntry } from '../types/calculator';
 
 // Calculate standard loan details without UnBurden features
 function calculateStandardLoan(amount: number, interestRate: number, termYears: number) {
@@ -54,7 +54,7 @@ export function calculateLoanDetails(inputs: LoanInputs) {
     
     // Calculate monthly components
     const monthlyInterest = remainingBalance * monthlyRate;
-    let monthlyPrincipal = Math.min(adjustedEMI - monthlyInterest, remainingBalance);
+    const monthlyPrincipal = Math.min(adjustedEMI - monthlyInterest, remainingBalance);
     
     // Apply extra EMI if applicable
     const isExtraMonth = inputs.extraEMIs > 0 && month % Math.floor(12 / inputs.extraEMIs) === 0;
